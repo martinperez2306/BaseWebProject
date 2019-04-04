@@ -12,7 +12,16 @@ Proyecto Base para una aplicación Web.
 * jQuery para que funciones las librerias de Bootstrap (**Version 3.3.1**)
 * PostgreSQL
 
-## Herramientas utilizadas en el Desarrollo
+## Herramientas utilizadas
 
 * Eclipse Photon
 * Maven 3.6.0
+* Apache-Tomcat 8.5
+
+## Descripcion
+
+El proyecto define una aplicacion Web basica.<br>
+Posee la estructura *MVC*.<br>
+**ABM** de Usuarios implementado como ejemplo incial.<br>
+
+**NOTA**: Se requere una Base de Datos (Se eligió PostgreSQL en este caso) en el cual exista una tabla *USUARIO*.

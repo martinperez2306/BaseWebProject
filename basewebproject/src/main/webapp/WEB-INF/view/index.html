@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Index</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="resources/css/bootstrap.css">
+  <script src="resources/js/jquery-3.3.1.js"></script>
+  <script src="resources/js/bootstrap.js"></script>
+  <script src="resources/angular/angular-1.7.8.js"></script>
+  <script src="resources/angular/controller/login-controller.js"></script>
+  <script src="resources/angular/factory/login-factory.js"></script>
+</head>
+
+
+<body ng-app="baseWebProjectApp" ng-controller="loginController">
+	<div class="container">
+		<h2>Gestion Hogar</h2>
+		<div class="form-group">
+			<label for="email">Username:</label> <input class="form-control"
+				id="email" placeholder="Enter email" name="email"
+				ng-model="loginRequest.username">
+		</div>
+		<div class="form-group">
+			<label for="pwd">Password:</label> <input type="password"
+				class="form-control" id="pwd" placeholder="Enter password"
+				name="pswd" ng-model="loginRequest.password">
+		</div>
+		<div class="form-group form-check">
+			<label class="form-check-label"> <input
+				class="form-check-input" type="checkbox" name="remember">
+				Remember me
+			</label>
+		</div>
+		<button class="btn btn-primary" ng-click="login(loginRequest)">Aceptar</button>
+	</div>
+</body>

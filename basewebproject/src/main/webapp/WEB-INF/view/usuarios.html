@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Usuarios</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/font-awesome.css">
+<script src="resources/js/jquery-3.3.1.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/angular/angular-1.7.8.js"></script>
+<script src="resources/angular/controller/usuarios-controller.js"></script>
+<script src="resources/angular/factory/usuarios-factory.js"></script>
+<script src="resources/angular/model/usuario-model.js"></script>
+
+<style>
+.tablaUsuarios {
+	max-height: 500px;
+}
+
+.mensajeCampoFaltanta{
+	color: red;
+	font-weight: bold;
+	font-size: 13px;
+}
+</style>
+</head>
+<body ng-app="baseWebProjectApp" ng-controller="usuariosController">
+
+	<!-- Main Content -->
+	<div class="container" ng-init="init()" ng-cloak>
+		<div class="row">
+			<h2>Men&uacute; de Usuarios</h2>
+			<div class="table-responsive tablaUsuarios">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Username</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Acci&oacute;n</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="usuario in usuarios track by $index">
+							<td scope="col">{{$index}}</td>
+							<td scope="col">{{usuario.username}}</td>
+							<td scope="col">{{usuario.nombre}}</td>
+							<td scope="col">
+								<button class="btn btn-primary"
+									ng-click="udpateUsuario(usuario)">
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-danger" ng-click="deleteUsuario(usuario)">
+									<i class="fa fa-trash" aria-hidden="true"></i>
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<button class="btn btn-success" ng-click="addUsuario()">Agregar
+				Usuario</button>
+		</div>
+	</div>
+
+
+	<!-- Modal Usuario -->
+	<div class="modal fade" id="modalUsuario">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">{{modalUsuario.title}}</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="name">Nombre:</label> <input type="text"
+							class="form-control" id="usr" ng-model="nuevoUsuario.nombre">
+						<span class="mensajeCampoFaltanta" ng-show=" modalUsuario.faltaNombre">*{{modalUsuario.mensajeNombre}}</span>
+					</div>
+					<div class="form-group">
+						<label for="username">Username:</label> <input type="text"
+							class="form-control" id="usr" ng-model="nuevoUsuario.username">
+						<span class="mensajeCampoFaltanta" ng-show=" modalUsuario.faltaUsername">*{{modalUsuario.mensajeUsername}}</span>
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label> <input type="password"
+							class="form-control" id="pwd" ng-model="nuevoUsuario.password">
+						<span class="mensajeCampoFaltanta" ng-show=" modalUsuario.faltaPassword">*{{modalUsuario.mensajePassword}}</span>
+					</div>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" ng-click="modalUsuario.funcion(nuevoUsuario)">Enviar</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal Confirmacion -->
+	<div class="modal fade" id="modalConfirmacion">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">{{modalConfirmacion.title}}</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					Est&aacute; seguro que desea eliminar el usuario {{modalConfirmacion.parametro.nombre}}?
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" ng-click="modalConfirmacion.funcion(modalConfirmacion.parametro)"
+						data-dismiss="modal">Aceptar</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

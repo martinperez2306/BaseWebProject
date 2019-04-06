@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>basewebproject</display-name>
+
+	<!-- Definimos el parametro que define el contexto --> 
+	<!-- Si esto no esta definido el nombre del archivo que contiene el contexto sera, en este caso, dispatcher-servlet.xml -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <!-- Definimos el archivo que contiene el contexto y la configuracion mvc. -->
+        <param-value>/WEB-INF/classes/applicationContext.xml</param-value>
+    </context-param>
+
+	<!-- Definimos el servlet que tomara los pedidos -->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- Cargamos el contexto definido -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/mvc-config.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+	<!-- Definimos el mapeo, donde los pedidos que tengan la extrutura definida seran tomados por el Servlet asignado -->
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Sin esto no funciona llamar al mvc-config -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+</web-app>
